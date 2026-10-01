@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { AboutMeSection } from './components/AboutMeSection';
+import { ClosingSection } from './components/ClosingSection';
 import { HeroSection } from './components/HeroSection';
 import { LearningLogSection } from './components/LearningLogSection';
 import { OriginStorySection } from './components/OriginStorySection';
@@ -25,6 +26,7 @@ export default function App() {
       <ProjectsSection />
       <WinsBadgesSection />
       <LearningLogSection />
+      <ClosingSection onOpenSayHi={() => setIsSayHiOpen(true)} />
       <SayHiModal isOpen={isSayHiOpen} onClose={() => setIsSayHiOpen(false)} />
     </main>
   );

@@ -16,7 +16,7 @@ export const SayHiModal: React.FC<SayHiModalProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const email = 'abinethra.xyz@gmail.com';
+  const email = 'sreeabinethra7@gmail.com';
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -168,7 +168,23 @@ export const SayHiModal: React.FC<SayHiModalProps> = ({ isOpen, onClose }) => {
             <Terminal className="w-3.5 h-3.5 text-[#262320]" />
             <span>B.Tech AI &amp; DS (2nd Year)</span>
             <span aria-hidden="true">·</span>
-            <span>AI Agents &amp; AppSec</span>
+            <a
+              href="https://www.linkedin.com/in/sree-abi-nethra-i"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#262320] underline decoration-[#F28DB9]"
+            >
+              LinkedIn
+            </a>
+            <span aria-hidden="true">·</span>
+            <a
+              href="https://github.com/abinethra"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#262320] underline decoration-[#F28DB9]"
+            >
+              GitHub
+            </a>
           </div>
           <a
             href={`mailto:${email}`}

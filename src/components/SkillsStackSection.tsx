@@ -6,6 +6,7 @@ import {
   PinkSquiggle,
   TourGuideArrow,
 } from './Doodles';
+import { RevealOnScroll } from './RevealOnScroll';
 
 interface SkillBar {
   name: string;
@@ -225,7 +226,7 @@ export const SkillsStackSection: React.FC = () => {
       {/* Background Dotted Curved Path */}
       <DottedCurvedPath className="pointer-events-none absolute bottom-[12%] left-[38%] w-[360px] opacity-40 rotate-12 hidden lg:block" />
 
-      <div className="relative z-10 w-full max-w-[1380px] mx-auto flex flex-col justify-between gap-10">
+      <RevealOnScroll className="relative z-10 w-full max-w-[1380px] mx-auto flex flex-col justify-between gap-10">
         {/* =========================================================
             TOP HEADER AREA: Big Grey Condensed Heading (Second Half Larger)
             + Short Paragraph of Rhetorical Questions in Small Grey Text
@@ -493,7 +494,7 @@ export const SkillsStackSection: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </RevealOnScroll>
     </section>
   );
 };

@@ -14,9 +14,8 @@ import {
   DoodleStar,
   DottedCurvedPath,
   PinkSquiggle,
-  StickyDoodleArrow,
-  TourGuideArrow,
 } from './Doodles';
+import { RevealOnScroll } from './RevealOnScroll';
 
 interface ClosingSectionProps {
   onOpenSayHi: () => void;
@@ -81,22 +80,25 @@ export const ClosingSection: React.FC<ClosingSectionProps> = ({
       {/* =========================================================
           TOP-LEFT CORNER: Bold Grey Condensed "and that's a wrap."
          ========================================================= */}
-      <div className="relative z-10 w-full max-w-[1380px] mx-auto pt-2">
-        <span className="font-hand text-2xl sm:text-3xl text-[#262320] -rotate-2 inline-block mb-1">
+      <RevealOnScroll className="relative z-10 w-full max-w-[1380px] mx-auto pt-2">
+        <span className="font-hand text-2xl sm:text-3xl text-[#3A3A3A] -rotate-2 inline-block mb-1">
           made it to the end! ↓
         </span>
         <h2 className="font-condensed text-4xl sm:text-6xl md:text-[72px] lg:text-[86px] text-[#8A8580] leading-[0.92] tracking-[-0.045em] lowercase">
           and that&apos;s a wrap.
         </h2>
         <PinkSquiggle className="w-40 sm:w-52 h-auto mt-2" />
-      </div>
+      </RevealOnScroll>
 
       {/* =========================================================
           MAIN CONTENT GRID:
           Left: Contact Icon Rows + Pink Sticker Resume Button + "psst... open to hackathons"
           Right: Pink Open Envelope with Lined Paper Handwritten Note that slides up on hover
          ========================================================= */}
-      <div className="relative z-10 w-full max-w-[1380px] mx-auto my-auto py-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <RevealOnScroll
+        delayMs={120}
+        className="relative z-10 w-full max-w-[1380px] mx-auto my-auto py-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
+      >
         {/* LEFT COLUMN (5 cols): Contact Rows + Sticker Resume Pill */}
         <div className="lg:col-span-5 flex flex-col items-start justify-center space-y-8">
           <div>
@@ -334,7 +336,7 @@ export const ClosingSection: React.FC<ClosingSectionProps> = ({
             </div>
           </div>
         </div>
-      </div>
+      </RevealOnScroll>
 
       {/* =========================================================
           BOTTOM FOOTER BAR

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ArrowUpRight, Camera, RotateCcw, Sparkles } from 'lucide-react';
 import { AboutDoodleArrow, DoodleStar, PinkSquiggle } from './Doodles';
+import { RevealOnScroll } from './RevealOnScroll';
 
 interface AboutMeSectionProps {
   onOpenSayHi: () => void;
@@ -64,7 +65,7 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({
         {/* =========================================================
             LEFT COLUMN: Tall Photo-Style Panel with Cropped Vertical Pink Bubble Text
            ========================================================= */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-start">
+        <RevealOnScroll className="lg:col-span-5 flex justify-center lg:justify-start">
           <input
             ref={fileInputRef}
             type="file"
@@ -74,22 +75,22 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({
             aria-label="Replace About Me portrait photo"
           />
 
-          <div className="relative w-full max-w-[390px] sm:max-w-[430px]">
+          <div className="relative w-full max-w-[350px] sm:max-w-[420px]">
             {/* Top-left & bottom-right scrapbook masking tape strips */}
             <div className="scrapbook-tape absolute -top-3.5 left-10 w-24 h-6 -rotate-6 z-30 pointer-events-none" />
             <div className="scrapbook-tape absolute -bottom-3 right-10 w-20 h-6 rotate-4 z-30 pointer-events-none" />
 
             {/* Doodle star near top-right of tall photo panel */}
             <DoodleStar
-              className="pointer-events-none absolute -right-6 -top-5 w-7 h-7 rotate-12 z-20"
+              className="pointer-events-none absolute -right-5 -top-5 w-7 h-7 rotate-12 z-20"
               color="#F28DB9"
             />
 
-            {/* Tall Photo-Style Panel */}
+            {/* Tall Photo-Style Panel with subtle halftone effect */}
             <div
               onClick={() => fileInputRef.current?.click()}
               title="Click to replace tall portrait photo"
-              className="group relative w-full aspect-[3/4.15] rounded-[26px] overflow-hidden bg-[#262320] border-2 border-[#262320]/20 shadow-[0_18px_40px_rgba(38,35,32,0.16)] -rotate-[1.5deg] hover:rotate-0 transition-transform duration-200 cursor-pointer"
+              className="halftone-overlay group relative w-full aspect-[3/4.15] rounded-[26px] overflow-hidden bg-[#3A3A3A] border-2 border-[#3A3A3A]/20 shadow-[0_18px_40px_rgba(58,58,58,0.16)] -rotate-[1.2deg] hover:rotate-0 transition-transform duration-200 cursor-pointer"
             >
               {!imgError ? (
                 <img
@@ -113,17 +114,17 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({
 
               {/* Subtle gradient scrim for contrast with cropped vertical bubble text */}
               <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#262320]/45 via-transparent to-[#262320]/20"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#3A3A3A]/45 via-transparent to-[#3A3A3A]/20"
                 aria-hidden="true"
               />
 
               {/* CROPPED VERTICAL PINK BUBBLE TEXT ALONG THE LEFT EDGE */}
               <div
-                className="pointer-events-none absolute inset-y-0 -left-6 sm:-left-8 flex items-center select-none"
+                className="pointer-events-none absolute inset-y-0 -left-5 sm:-left-8 flex items-center select-none z-10"
                 aria-hidden="true"
               >
                 <span
-                  className="font-bubble text-[#F28DB9] uppercase leading-[0.82] tracking-[-0.02em] text-[84px] sm:text-[102px] md:text-[114px] whitespace-nowrap [writing-mode:vertical-rl] rotate-180 bubble-title-shadow"
+                  className="font-bubble text-[#F28DB9] uppercase leading-[0.82] tracking-[-0.02em] text-[72px] sm:text-[102px] md:text-[114px] whitespace-nowrap [writing-mode:vertical-rl] rotate-180 bubble-title-shadow"
                   style={{
                     WebkitTextStroke: '2px rgba(214, 102, 152, 0.35)',
                   }}
@@ -133,14 +134,14 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({
               </div>
 
               {/* Small handwritten sticker caption on bottom-right of photo */}
-              <div className="pointer-events-none absolute bottom-4 right-4 bg-[#EDE6D8]/95 text-[#262320] px-3 py-1 rounded-md border border-[#262320]/20 shadow-xs -rotate-2">
+              <div className="pointer-events-none absolute bottom-4 right-4 z-10 bg-[#EDE6D8]/95 text-[#3A3A3A] px-3 py-1 rounded-md border border-[#3A3A3A]/20 shadow-xs -rotate-2">
                 <span className="font-hand text-lg leading-none font-semibold">
-                  builder mode: on ⚡
+                  builder mode: on
                 </span>
               </div>
 
               {/* Hover button to swap photo */}
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute top-3.5 right-3.5 z-30 flex items-center gap-1.5 bg-[#262320]/85 text-[#EDE6D8] px-2.5 py-1 rounded-md text-[11px] font-body">
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute top-3.5 right-3.5 z-30 flex items-center gap-1.5 bg-[#3A3A3A]/85 text-[#EDE6D8] px-2.5 py-1 rounded-md text-[11px] font-body">
                 <Camera className="w-3 h-3 text-[#F28DB9]" />
                 <span>Replace photo</span>
                 {isCustomImg && (
@@ -160,12 +161,15 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({
               </div>
             </div>
           </div>
-        </div>
+        </RevealOnScroll>
 
         {/* =========================================================
             RIGHT COLUMN: Outlined Pill Badge + Bio + "I do:" Bullet List
            ========================================================= */}
-        <div className="lg:col-span-7 flex flex-col items-start justify-center lg:pl-4">
+        <RevealOnScroll
+          delayMs={140}
+          className="lg:col-span-7 flex flex-col items-start justify-center lg:pl-4"
+        >
           {/* Top Badge + Handwritten annotation */}
           <div className="flex flex-wrap items-center gap-3 mb-5">
             {/* Explicitly requested pill-shaped outlined badge "2nd yr B.Tech AI & DS" */}
@@ -262,7 +266,7 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({
               let&apos;s ship something in 48h!
             </span>
           </div>
-        </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

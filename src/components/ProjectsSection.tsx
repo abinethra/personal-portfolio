@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { ArrowUpRight, Code2, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Code2 } from 'lucide-react';
+import { PROJECTS_DATA, ProjectItem } from '../data/portfolioData';
 import {
   AboutDoodleArrow,
   DoodleStar,
@@ -9,89 +10,12 @@ import {
   ThisIsArrow,
   TourGuideArrow,
 } from './Doodles';
+import { RevealOnScroll } from './RevealOnScroll';
 
-interface ProjectItem {
-  id: string;
-  name: string;
-  shortTitle?: string;
-  description: string;
-  tags: string[];
-  liveUrl: string;
-  githubUrl?: string;
-  tinyPinkLabel: string;
-  handwrittenCaption: string;
-  cardStyle: 'polaroid' | 'film-strip' | 'phone-mockup' | 'ticket-stub' | 'sticky-note';
-  rotationClass: string;
-  imageSrc: string;
-}
-
-const PROJECTS: ProjectItem[] = [
-  {
-    id: 'usdx',
-    name: 'USDX (Unified Sports Data Exchange)',
-    description:
-      'consent-driven data interoperability platform for Indian youth sports data, with a cybersecurity layer.',
-    tags: ['React', 'Cybersecurity', 'Data Privacy'],
-    liveUrl: 'https://usdxproject.vercel.app',
-    tinyPinkLabel: 'cybersec + sports data',
-    handwrittenCaption: 'consent-first architecture ↓',
-    cardStyle: 'polaroid',
-    rotationClass: '-rotate-[3.5deg]',
-    imageSrc: '/src/assets/images/usdx_sports_cyber_preview_1790862159546.jpg',
-  },
-  {
-    id: 'neuropractice',
-    name: 'NeuroPractice-VR',
-    description:
-      'VR social-skills training tool for autistic teens and adults.',
-    tags: ['WebXR / VR', 'AI Coaching', 'Accessibility'],
-    liveUrl: 'https://neuro-practice-vr.vercel.app',
-    githubUrl: 'https://github.com/abinethra/NeuroPractice-VR',
-    tinyPinkLabel: 'vr + assistive ai',
-    handwrittenCaption: 'immersive social practice!',
-    cardStyle: 'film-strip',
-    rotationClass: 'rotate-[3deg]',
-    imageSrc: '/src/assets/images/neuropractice_vr_preview_1790862173016.jpg',
-  },
-  {
-    id: 'finintel',
-    name: 'FinIntel',
-    description:
-      'multi-agent financial intelligence system for retail investors.',
-    tags: ['Multi-Agent AI', 'Python', 'FinTech'],
-    liveUrl: 'https://fin-intel-olive.vercel.app',
-    tinyPinkLabel: 'multi-agent system',
-    handwrittenCaption: 'agents collaborating in real time ←',
-    cardStyle: 'phone-mockup',
-    rotationClass: '-rotate-[4deg]',
-    imageSrc: '/src/assets/images/finintel_multiagent_preview_1790862186556.jpg',
-  },
-  {
-    id: 'ecoblocks',
-    name: 'EcoBlocks',
-    description: 'eco intervention project.',
-    tags: ['Sustainability', 'Full-Stack Web', 'Impact'],
-    liveUrl: 'https://eco-blocks.vercel.app',
-    tinyPinkLabel: 'eco intervention',
-    handwrittenCaption: 'building greener cities ↗',
-    cardStyle: 'ticket-stub',
-    rotationClass: 'rotate-[2.5deg]',
-    imageSrc:
-      '/src/assets/images/ecoblocks_sustainability_preview_1790862197932.jpg',
-  },
-  {
-    id: 'tiffinbox',
-    name: 'Tiffinbox Stories',
-    description: 'website for my cloud kitchen in ECR, Chennai.',
-    tags: ['React', 'Frontend Craft', 'Vercel'],
-    liveUrl: 'https://cloudkwebsite.vercel.app',
-    tinyPinkLabel: 'real-world local biz',
-    handwrittenCaption: 'from my cloud kitchen in ECR, Chennai!',
-    cardStyle: 'sticky-note',
-    rotationClass: '-rotate-[3deg]',
-    imageSrc: '/src/assets/images/tiffinbox_stories_preview_1790862208818.jpg',
-  },
-];
+/**
+ * Editable projects array (synced with src/data/portfolioData.ts)
+ */
+export const PROJECTS: ProjectItem[] = PROJECTS_DATA;
 
 const ProjectCardArtifact: React.FC<{ project: ProjectItem }> = ({
   project,
@@ -175,9 +99,9 @@ const ProjectCardArtifact: React.FC<{ project: ProjectItem }> = ({
         {/* Masking tape strip */}
         <div className="scrapbook-tape absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 -rotate-2 z-20 pointer-events-none" />
 
-        <div className="bg-[#FAF7F0] p-3.5 pb-5 rounded-xl border border-[#262320]/20 shadow-[0_16px_36px_rgba(38,35,32,0.14)] group-hover:shadow-[0_24px_48px_rgba(38,35,32,0.22)]">
-          {/* Polaroid photo window */}
-          <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-[#262320] mb-3 border border-[#262320]/15">
+        <div className="bg-[#FAF7F0] p-3.5 pb-5 rounded-xl border border-[#3A3A3A]/20 shadow-[0_16px_36px_rgba(58,58,58,0.14)] group-hover:shadow-[0_24px_48px_rgba(58,58,58,0.22)]">
+          {/* Polaroid photo window with subtle halftone effect */}
+          <div className="halftone-overlay relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-[#3A3A3A] mb-3 border border-[#3A3A3A]/15">
             {!imgError ? (
               <img
                 src={project.imageSrc}
@@ -191,7 +115,7 @@ const ProjectCardArtifact: React.FC<{ project: ProjectItem }> = ({
                 {project.name}
               </div>
             )}
-            <div className="absolute top-2 left-2 bg-[#262320]/85 text-[#F28DB9] px-2 py-0.5 rounded text-[10px] font-mono">
+            <div className="absolute top-2 left-2 z-10 bg-[#3A3A3A]/85 text-[#F28DB9] px-2 py-0.5 rounded text-[10px] font-mono">
               POLAROID · 01
             </div>
           </div>
@@ -496,7 +420,7 @@ export const ProjectsSection: React.FC = () => {
       <DottedCurvedPath className="pointer-events-none absolute top-[24%] left-[18%] w-[640px] opacity-45 -rotate-6 hidden lg:block" />
       <DottedCurvedPath className="pointer-events-none absolute bottom-[20%] right-[16%] w-[520px] opacity-40 rotate-12 hidden lg:block" />
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto">
+      <RevealOnScroll className="relative z-10 w-full max-w-[1400px] mx-auto">
         {/* =========================================================
             DESKTOP / TABLET SCATTERED COLLAGE AROUND CENTRAL PINK BUBBLE HEADING
            ========================================================= */}
@@ -506,7 +430,7 @@ export const ProjectsSection: React.FC = () => {
             {/* Top-Left Card: USDX Polaroid */}
             <div className="md:col-span-5 lg:col-span-4 relative">
               <div className="flex items-center gap-2 mb-2 ml-2">
-                <span className="font-hand text-2xl text-[#262320] -rotate-3">
+                <span className="font-hand text-2xl text-[#3A3A3A] -rotate-3">
                   {PROJECTS[0].handwrittenCaption}
                 </span>
               </div>
@@ -524,10 +448,10 @@ export const ProjectsSection: React.FC = () => {
             {/* Top-Right Card: NeuroPractice-VR Film Strip */}
             <div className="md:col-span-7 lg:col-span-4 relative">
               <div className="flex items-center justify-end gap-2 mb-2 mr-3">
-                <span className="font-hand text-2xl text-[#262320] rotate-2">
+                <span className="font-hand text-2xl text-[#3A3A3A] rotate-2">
                   {PROJECTS[1].handwrittenCaption}
                 </span>
-                <ThisIsArrow className="w-9 h-9 text-[#262320]" />
+                <ThisIsArrow className="w-9 h-9 text-[#3A3A3A]" />
               </div>
               <ProjectCardArtifact project={PROJECTS[1]} />
             </div>
@@ -546,7 +470,7 @@ export const ProjectsSection: React.FC = () => {
               />
               <DoodleStar
                 className="pointer-events-none absolute bottom-2 right-[10%] w-6 h-6 rotate-12"
-                color="#3A3633"
+                color="#3A3A3A"
               />
 
               <span className="font-condensed text-sm sm:text-base text-[#8A8580] tracking-[-0.04em] lowercase mb-1">
@@ -554,7 +478,7 @@ export const ProjectsSection: React.FC = () => {
               </span>
 
               <h2
-                className="font-bubble text-[#F28DB9] bubble-title-shadow lowercase select-none leading-[0.86] tracking-[-0.02em] text-[13vw] sm:text-[11vw] md:text-[92px] lg:text-[108px] xl:text-[124px]"
+                className="font-bubble text-[#F28DB9] bubble-title-shadow lowercase select-none leading-[0.86] tracking-[-0.02em] text-[11.5vw] sm:text-[10.5vw] md:text-[88px] lg:text-[104px] xl:text-[120px]"
                 style={{
                   WebkitTextStroke: '2px rgba(214, 102, 152, 0.28)',
                 }}
@@ -562,9 +486,9 @@ export const ProjectsSection: React.FC = () => {
                 projects &amp; works
               </h2>
 
-              <PinkSquiggle className="w-44 sm:w-56 h-auto mt-2" />
+              <PinkSquiggle className="w-40 sm:w-56 h-auto mt-2" />
 
-              <p className="font-hand text-2xl sm:text-3xl text-[#262320] -rotate-2 mt-2">
+              <p className="font-hand text-2xl sm:text-3xl text-[#3A3A3A] -rotate-2 mt-2">
                 built fast, built safe, shipped to production ★
               </p>
             </div>
@@ -573,7 +497,7 @@ export const ProjectsSection: React.FC = () => {
             <div className="lg:col-span-4 relative max-w-sm mx-auto lg:max-w-none w-full">
               <div className="flex items-center gap-1.5 mb-2 ml-3">
                 <AboutDoodleArrow className="w-10 h-6" />
-                <span className="font-hand text-2xl text-[#262320] -rotate-2">
+                <span className="font-hand text-2xl text-[#3A3A3A] -rotate-2">
                   {PROJECTS[2].handwrittenCaption}
                 </span>
               </div>
@@ -590,8 +514,8 @@ export const ProjectsSection: React.FC = () => {
             <div className="md:col-span-6 lg:col-span-5 lg:col-start-2 relative">
               <ProjectCardArtifact project={PROJECTS[3]} />
               <div className="flex items-center gap-2 mt-2 ml-4">
-                <StickyDoodleArrow className="w-12 h-9 rotate-180 -mt-3 text-[#262320]" />
-                <span className="font-hand text-2xl text-[#262320] -rotate-2">
+                <StickyDoodleArrow className="w-12 h-9 rotate-180 -mt-3 text-[#3A3A3A]" />
+                <span className="font-hand text-2xl text-[#3A3A3A] -rotate-2">
                   {PROJECTS[3].handwrittenCaption}
                 </span>
               </div>
@@ -600,7 +524,7 @@ export const ProjectsSection: React.FC = () => {
             {/* Bottom-Right Card: Tiffinbox Stories Sticky Note */}
             <div className="md:col-span-6 lg:col-span-4 lg:col-start-8 relative">
               <div className="flex items-center justify-end gap-2 mb-2 mr-2">
-                <span className="font-hand text-2xl text-[#262320] rotate-2">
+                <span className="font-hand text-2xl text-[#3A3A3A] rotate-2">
                   {PROJECTS[4].handwrittenCaption}
                 </span>
               </div>
@@ -608,7 +532,7 @@ export const ProjectsSection: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </RevealOnScroll>
     </section>
   );
 };

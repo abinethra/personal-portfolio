@@ -5,12 +5,16 @@
     --bg-cream: #EDE6D8;
     --bubble-pink: #F28DB9;
     --warm-grey: #8A8580;
-    --charcoal: #262320;
+    --charcoal: #3A3A3A;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     background-color: #EDE6D8;
-    color: #262320;
+    color: #3A3A3A;
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
   }
@@ -45,21 +49,76 @@
 .bubble-title-shadow {
   text-shadow:
     0 4px 0 rgba(214, 102, 152, 0.35),
-    0 12px 28px rgba(38, 35, 32, 0.12);
+    0 12px 28px rgba(58, 58, 58, 0.12);
 }
 
 /* Subtle masking tape strip effect */
 .scrapbook-tape {
-  background: rgba(255, 252, 240, 0.62);
+  background: rgba(255, 252, 240, 0.65);
   backdrop-filter: blur(2px);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  border-left: 1px dashed rgba(138, 133, 128, 0.25);
-  border-right: 1px dashed rgba(138, 133, 128, 0.25);
+  box-shadow: 0 1px 3px rgba(58, 58, 58, 0.08);
+  border-left: 1px dashed rgba(138, 133, 128, 0.28);
+  border-right: 1px dashed rgba(138, 133, 128, 0.28);
 }
 
 /* Halftone & cutout blend helper so cream background of placeholder blends seamlessly */
 .cutout-halftone-img {
-  filter: contrast(1.08) grayscale(100%);
+  filter: contrast(1.12) grayscale(100%);
   mix-blend-mode: multiply;
 }
+
+/* Subtle halftone dot pattern overlay for scrapbook photos and project previews */
+.halftone-overlay {
+  position: relative;
+}
+
+.halftone-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(58, 58, 58, 0.22) 1px, transparent 0);
+  background-size: 4px 4px;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+}
+
+/* Scroll Fade & Slide-in Reveal (compositor-only transform & opacity) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* SVG self-drawing stroke animation */
+.draw-stroke {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.draw-stroke.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .draw-stroke {
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+}
+
 

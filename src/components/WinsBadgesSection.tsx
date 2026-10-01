@@ -1,114 +1,20 @@
 import React, { useState } from 'react';
-import { Award, CheckCircle2, Sparkles, Ticket, X } from 'lucide-react';
+import { Award, X } from 'lucide-react';
+import { WINS_AND_BADGES_DATA, WinOrBadgeItem } from '../data/portfolioData';
 import {
   AboutDoodleArrow,
-  DoodleStar,
   DottedCurvedPath,
   PinkSquiggle,
-  StickyDoodleArrow,
   ThisIsArrow,
 } from './Doodles';
+import { RevealOnScroll } from './RevealOnScroll';
 
 /**
  * ============================================================================
- * EDITABLE WINS & BADGES DATA ARRAY
- * Replace the bracketed placeholders below with your actual hackathons,
- * results, certifications, and issuers.
+ * EDITABLE WINS & BADGES DATA ARRAY (Synced with src/data/portfolioData.ts)
  * ============================================================================
  */
-export interface WinOrBadgeItem {
-  id: string;
-  artifactType: 'event-ticket' | 'lanyard-badge' | 'certificate-card' | 'stamp-card';
-  categoryLabel: string;
-  title: string; // e.g. "[Hackathon Name]" or "[Certification Name]"
-  subtitle: string; // e.g. "[Result/Position]" or "[Issuer]"
-  year: string; // e.g. "[Year]"
-  handwrittenNote: string;
-  details: string;
-  rotationClass: string;
-  serialCode: string;
-}
-
-export const WINS_AND_BADGES: WinOrBadgeItem[] = [
-  {
-    id: 'win-1',
-    artifactType: 'event-ticket',
-    categoryLabel: 'hackathon win',
-    title: '[Hackathon Name], [Result/Position], [Year]',
-    subtitle: 'AI & Cybersecurity Track · 36-Hour Sprint',
-    year: '[Year]',
-    handwrittenNote: 'zero sleep, shipped with 5 mins left!',
-    details:
-      'Built and demoed an end-to-end working prototype under tight hackathon constraints. Edit this placeholder in WINS_AND_BADGES at the top of WinsBadgesSection.tsx.',
-    rotationClass: '-rotate-[3deg]',
-    serialCode: 'TKT-01',
-  },
-  {
-    id: 'win-2',
-    artifactType: 'lanyard-badge',
-    categoryLabel: 'builder pass',
-    title: '[Hackathon Name], [Result/Position], [Year]',
-    subtitle: 'Finalist / Special Track Winner',
-    year: '[Year]',
-    handwrittenNote: 'best team energy ever ↓',
-    details:
-      'Collaborated on multi-agent AI architecture and live security validation during the finals round. Edit this placeholder in WINS_AND_BADGES.',
-    rotationClass: 'rotate-[2.5deg]',
-    serialCode: 'VIP-02',
-  },
-  {
-    id: 'cert-1',
-    artifactType: 'certificate-card',
-    categoryLabel: 'verified cert',
-    title: '[Certification Name], [Issuer]',
-    subtitle: 'Cybersecurity & Network Defense Foundations',
-    year: '[Year]',
-    handwrittenNote: 'down the security rabbit hole →',
-    details:
-      'Hands-on certification covering threat modeling, packet inspection, web app vulnerabilities, and secure systems engineering. Edit in WINS_AND_BADGES.',
-    rotationClass: '-rotate-[2deg]',
-    serialCode: 'CRT-03',
-  },
-  {
-    id: 'cert-2',
-    artifactType: 'stamp-card',
-    categoryLabel: 'ai / data stamp',
-    title: '[Certification Name], [Issuer]',
-    subtitle: 'Machine Learning & Applied Data Science',
-    year: '[Year]',
-    handwrittenNote: 'officially certified ★',
-    details:
-      'Credential in supervised/unsupervised learning, deep neural networks, and production model evaluation. Edit in WINS_AND_BADGES.',
-    rotationClass: 'rotate-[3.5deg]',
-    serialCode: 'STP-04',
-  },
-  {
-    id: 'win-3',
-    artifactType: 'event-ticket',
-    categoryLabel: 'campus / national',
-    title: '[Hackathon Name], [Result/Position], [Year]',
-    subtitle: 'Open Innovation & Full-Stack Build',
-    year: '[Year]',
-    handwrittenNote: 'judges loved the live demo!',
-    details:
-      'Designed and deployed a full-stack application focused on real-world usability and data privacy. Edit in WINS_AND_BADGES.',
-    rotationClass: 'rotate-[2deg]',
-    serialCode: 'TKT-05',
-  },
-  {
-    id: 'cert-3',
-    artifactType: 'certificate-card',
-    categoryLabel: 'cloud & sec',
-    title: '[Certification Name], [Issuer]',
-    subtitle: 'Ethical Hacking / Cloud & AI Security',
-    year: '[Year]',
-    handwrittenNote: 'always learning new tools',
-    details:
-      'Practical labs in offensive security testing, Burp Suite workflows, and securing modern web APIs. Edit in WINS_AND_BADGES.',
-    rotationClass: '-rotate-[2.5deg]',
-    serialCode: 'CRT-06',
-  },
-];
+export const WINS_AND_BADGES: WinOrBadgeItem[] = WINS_AND_BADGES_DATA;
 
 export const WinsBadgesSection: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<WinOrBadgeItem | null>(null);
@@ -356,21 +262,21 @@ export const WinsBadgesSection: React.FC = () => {
 
       <DottedCurvedPath className="pointer-events-none absolute top-[20%] right-[12%] w-[480px] opacity-40 -rotate-12 hidden lg:block" />
 
-      <div className="relative z-10 w-full max-w-[1380px] mx-auto flex flex-col gap-10">
+      <RevealOnScroll className="relative z-10 w-full max-w-[1380px] mx-auto flex flex-col gap-10">
         {/* =========================================================
             SECTION HEADER: Huge Pink Bubble Title "wins & badges"
            ========================================================= */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="font-hand text-2xl sm:text-3xl text-[#262320] -rotate-3">
+              <span className="font-hand text-2xl sm:text-3xl text-[#3A3A3A] -rotate-3">
                 pinned on my wall ↓
               </span>
-              <ThisIsArrow className="w-9 h-9 text-[#262320]" />
+              <ThisIsArrow className="w-9 h-9 text-[#3A3A3A]" />
             </div>
 
             <h2
-              className="font-bubble text-[#F28DB9] bubble-title-shadow lowercase select-none leading-[0.86] tracking-[-0.02em] text-[13vw] sm:text-[10vw] md:text-[84px] lg:text-[100px]"
+              className="font-bubble text-[#F28DB9] bubble-title-shadow lowercase select-none leading-[0.86] tracking-[-0.02em] text-[12vw] sm:text-[10vw] md:text-[84px] lg:text-[100px]"
               style={{
                 WebkitTextStroke: '2px rgba(214, 102, 152, 0.28)',
               }}
@@ -385,12 +291,11 @@ export const WinsBadgesSection: React.FC = () => {
               hackathon podiums, builder passes &amp; security credentials.
             </p>
             <p className="font-body text-xs text-[#6E6A64] mt-1">
-              Edit placeholders anytime in the{' '}
-              <code className="font-mono bg-[#FAF7F0] px-1.5 py-0.5 rounded border border-[#262320]/15">
-                WINS_AND_BADGES
-              </code>{' '}
-              array at the top of{' '}
-              <code className="font-mono">WinsBadgesSection.tsx</code>.
+              Edit placeholders anytime in{' '}
+              <code className="font-mono bg-[#FAF7F0] px-1.5 py-0.5 rounded border border-[#3A3A3A]/15">
+                src/data/portfolioData.ts
+              </code>
+              .
             </p>
           </div>
         </div>
@@ -409,7 +314,7 @@ export const WinsBadgesSection: React.FC = () => {
               >
                 {index % 2 === 1 && <AboutDoodleArrow className="w-9 h-5" />}
                 <span
-                  className={`font-hand text-2xl text-[#262320] ${
+                  className={`font-hand text-2xl text-[#3A3A3A] ${
                     index % 2 === 0 ? '-rotate-3' : 'rotate-2'
                   }`}
                 >
@@ -421,7 +326,7 @@ export const WinsBadgesSection: React.FC = () => {
             </div>
           ))}
         </div>
-      </div>
+      </RevealOnScroll>
 
       {/* =========================================================
           MODAL TO INSPECT ANY PINNED TICKET / BADGE / CERTIFICATE

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Camera, RotateCcw, Sparkles } from 'lucide-react';
 import { DoodleStar, PassportSquiggleArrow, PinkSquiggle } from './Doodles';
+import { RevealOnScroll } from './RevealOnScroll';
 
 const DEFAULT_DAY1_IMG =
   '/src/assets/images/day1_coder_passport_1790861326522.jpg';
@@ -50,7 +51,7 @@ export const OriginStorySection: React.FC = () => {
         {/* =========================================================
             TOP-LEFT: Intro Paragraph + Secondary Condensed Heading
            ========================================================= */}
-        <div className="max-w-xl pt-2 pl-1 sm:pl-4">
+        <RevealOnScroll className="max-w-xl pt-2 pl-1 sm:pl-4">
           <span className="inline-block font-hand text-2xl sm:text-3xl text-[#8A8580] -rotate-2 mb-1">
             how we got here...
           </span>
@@ -59,20 +60,23 @@ export const OriginStorySection: React.FC = () => {
             tiny, curious, low-key destined for late-night debugging.
           </h2>
 
-          <p className="font-body text-sm sm:text-base md:text-[16.5px] text-[#262320] leading-[1.7] lowercase">
+          <p className="font-body text-sm sm:text-base md:text-[16.5px] text-[#3A3A3A] leading-[1.7] lowercase">
             i&apos;ve always been wired to poke around and figure out how things
             work under the hood. as a 2nd-year b.tech ai &amp; data science
             student, that curiosity started with building ai apps—training
             models, wiring up llm agents, and turning wild ideas into working
             code just to see what i could make a machine do next.
           </p>
-        </div>
+        </RevealOnScroll>
 
         {/* =========================================================
             CENTER: Two Small Passport-Style Photo Frames
             ("day 1 coder" -> dotted squiggle path with arrow -> "now")
            ========================================================= */}
-        <div className="relative my-2 sm:my-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-2 md:gap-4 py-2">
+        <RevealOnScroll
+          delayMs={120}
+          className="relative my-2 sm:my-4 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-2 md:gap-4 py-2"
+        >
           {/* Hidden File Inputs for 1-click Replacement */}
           <input
             ref={day1InputRef}
@@ -92,7 +96,7 @@ export const OriginStorySection: React.FC = () => {
           />
 
           {/* PASSPORT FRAME 1: "day 1 coder" */}
-          <div className="relative flex flex-col items-center -rotate-[5deg] hover:-rotate-[2deg] transition-transform duration-200 sm:-mt-10">
+          <div className="relative flex flex-col items-center -rotate-[3deg] sm:-rotate-[5deg] hover:-rotate-[1deg] transition-transform duration-200 sm:-mt-10">
             {/* Masking tape */}
             <div className="scrapbook-tape absolute -top-2.5 left-1/2 -translate-x-1/2 w-14 h-5 rotate-3 z-20 pointer-events-none" />
 
@@ -104,16 +108,16 @@ export const OriginStorySection: React.FC = () => {
             <div
               onClick={() => day1InputRef.current?.click()}
               title="Click to replace 'day 1 coder' photo"
-              className="group relative bg-[#FAF7F0] p-2 sm:p-2.5 pb-3 rounded-[10px] border border-[#262320]/20 shadow-[0_12px_26px_rgba(38,35,32,0.13)] w-[148px] sm:w-[168px] md:w-[184px] cursor-pointer"
+              className="group relative bg-[#FAF7F0] p-2 sm:p-2.5 pb-3 rounded-[10px] border border-[#3A3A3A]/20 shadow-[0_12px_26px_rgba(58,58,58,0.13)] w-[148px] sm:w-[168px] md:w-[184px] cursor-pointer"
             >
-              <div className="relative w-full aspect-[3/4] rounded-[6px] overflow-hidden bg-[#E5DEC9]">
+              <div className="halftone-overlay relative w-full aspect-[3/4] rounded-[6px] overflow-hidden bg-[#E5DEC9]">
                 {!day1Error ? (
                   <img
                     src={day1Src}
                     alt="Day 1 coder passport snapshot"
                     referrerPolicy="no-referrer"
                     onError={() => setDay1Error(true)}
-                    className="w-full h-full object-cover contrast-[1.04]"
+                    className="w-full h-full object-cover contrast-[1.06] grayscale-[25%]"
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center">
@@ -125,7 +129,7 @@ export const OriginStorySection: React.FC = () => {
                 )}
 
                 {/* Hover replace indicator */}
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute top-2 right-2 bg-[#262320]/85 text-[#EDE6D8] px-2 py-0.5 rounded text-[10px] flex items-center gap-1">
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute top-2 right-2 z-10 bg-[#3A3A3A]/85 text-[#EDE6D8] px-2 py-0.5 rounded text-[10px] flex items-center gap-1">
                   <Camera className="w-2.5 h-2.5 text-[#F28DB9]" />
                   <span>swap</span>
                   {isCustomDay1 && (
@@ -149,11 +153,11 @@ export const OriginStorySection: React.FC = () => {
               <div className="mt-2 flex items-center justify-between px-0.5">
                 <span
                   className="font-body text-[11px] sm:text-xs font-bold tracking-wide text-[#F28DB9] lowercase"
-                  style={{ textShadow: '0 1px 0 rgba(38,35,32,0.22)' }}
+                  style={{ textShadow: '0 1px 0 rgba(58,58,58,0.22)' }}
                 >
                   day 1 coder
                 </span>
-                <span className="font-mono text-[9px] text-[#8A8580]">#01</span>
+                <span className="font-mono text-[9px] text-[#8A8580]">01</span>
               </div>
             </div>
           </div>
@@ -167,28 +171,28 @@ export const OriginStorySection: React.FC = () => {
           </div>
 
           {/* PASSPORT FRAME 2: "now" */}
-          <div className="relative flex flex-col items-center rotate-[4.5deg] hover:rotate-[1.5deg] transition-transform duration-200 sm:mt-12">
+          <div className="relative flex flex-col items-center rotate-[3deg] sm:rotate-[4.5deg] hover:rotate-[1deg] transition-transform duration-200 sm:mt-12">
             {/* Masking tape */}
             <div className="scrapbook-tape absolute -top-2.5 left-1/2 -translate-x-1/2 w-14 h-5 -rotate-3 z-20 pointer-events-none" />
 
             <DoodleStar
               className="pointer-events-none absolute -right-7 -bottom-3 w-5 h-5 rotate-12"
-              color="#3A3633"
+              color="#3A3A3A"
             />
 
             <div
               onClick={() => nowInputRef.current?.click()}
               title="Click to replace 'now' photo"
-              className="group relative bg-[#FAF7F0] p-2 sm:p-2.5 pb-3 rounded-[10px] border border-[#262320]/20 shadow-[0_12px_26px_rgba(38,35,32,0.13)] w-[148px] sm:w-[168px] md:w-[184px] cursor-pointer"
+              className="group relative bg-[#FAF7F0] p-2 sm:p-2.5 pb-3 rounded-[10px] border border-[#3A3A3A]/20 shadow-[0_12px_26px_rgba(58,58,58,0.13)] w-[148px] sm:w-[168px] md:w-[184px] cursor-pointer"
             >
-              <div className="relative w-full aspect-[3/4] rounded-[6px] overflow-hidden bg-[#E5DEC9]">
+              <div className="halftone-overlay relative w-full aspect-[3/4] rounded-[6px] overflow-hidden bg-[#E5DEC9]">
                 {!nowError ? (
                   <img
                     src={nowSrc}
                     alt="Now AI and cybersecurity builder passport snapshot"
                     referrerPolicy="no-referrer"
                     onError={() => setNowError(true)}
-                    className="w-full h-full object-cover contrast-[1.04]"
+                    className="w-full h-full object-cover contrast-[1.06] grayscale-[25%]"
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center">
@@ -200,7 +204,7 @@ export const OriginStorySection: React.FC = () => {
                 )}
 
                 {/* Hover replace indicator */}
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute top-2 right-2 bg-[#262320]/85 text-[#EDE6D8] px-2 py-0.5 rounded text-[10px] flex items-center gap-1">
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute top-2 right-2 z-10 bg-[#3A3A3A]/85 text-[#EDE6D8] px-2 py-0.5 rounded text-[10px] flex items-center gap-1">
                   <Camera className="w-2.5 h-2.5 text-[#F28DB9]" />
                   <span>swap</span>
                   {isCustomNow && (
@@ -224,32 +228,35 @@ export const OriginStorySection: React.FC = () => {
               <div className="mt-2 flex items-center justify-between px-0.5">
                 <span
                   className="font-body text-[11px] sm:text-xs font-bold tracking-wide text-[#F28DB9] lowercase"
-                  style={{ textShadow: '0 1px 0 rgba(38,35,32,0.22)' }}
+                  style={{ textShadow: '0 1px 0 rgba(58,58,58,0.22)' }}
                 >
                   now
                 </span>
-                <span className="font-mono text-[9px] text-[#8A8580]">#02</span>
+                <span className="font-mono text-[9px] text-[#8A8580]">02</span>
               </div>
             </div>
           </div>
-        </div>
+        </RevealOnScroll>
 
         {/* =========================================================
             BOTTOM-RIGHT: Continuation Paragraph + Bold Punchline
            ========================================================= */}
-        <div className="self-end max-w-xl pr-1 sm:pr-4 pb-2 text-left sm:text-right flex flex-col items-start sm:items-end">
-          <p className="font-body text-sm sm:text-base md:text-[16.5px] text-[#262320] leading-[1.7] lowercase">
+        <RevealOnScroll
+          delayMs={200}
+          className="self-end max-w-xl pr-1 sm:pr-4 pb-2 text-left sm:text-right flex flex-col items-start sm:items-end"
+        >
+          <p className="font-body text-sm sm:text-base md:text-[16.5px] text-[#3A3A3A] leading-[1.7] lowercase">
             then i got pulled into cybersecurity after realising every smart
             system also needs to be a safe one. i love hackathons because there&apos;s
             no overthinking—you team up, lock in, and ship something real in
             24–48 hours.{' '}
-            <strong className="font-bold text-[#262320] bg-[#F28DB9]/25 px-1.5 py-0.5 rounded-xs">
+            <strong className="font-bold text-[#3A3A3A] bg-[#F28DB9]/25 px-1.5 py-0.5 rounded-xs">
               that&apos;s when it clicked: build smart, build safe, build fast.
             </strong>
           </p>
 
           <PinkSquiggle className="w-36 sm:w-44 h-auto mt-2 opacity-90" />
-        </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

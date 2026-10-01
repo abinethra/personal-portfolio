@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import { AboutMeSection } from './components/AboutMeSection';
 import { ClosingSection } from './components/ClosingSection';
+import { FloatingNav } from './components/FloatingNav';
 import { HeroSection } from './components/HeroSection';
 import { LearningLogSection } from './components/LearningLogSection';
 import { OriginStorySection } from './components/OriginStorySection';
@@ -18,7 +19,8 @@ export default function App() {
   const [isSayHiOpen, setIsSayHiOpen] = useState(false);
 
   return (
-    <main className="min-h-screen w-full bg-[#EDE6D8] text-[#262320] relative overflow-x-hidden">
+    <main className="min-h-screen w-full bg-[#EDE6D8] text-[#3A3A3A] relative overflow-x-hidden">
+      <FloatingNav />
       <HeroSection onOpenSayHi={() => setIsSayHiOpen(true)} />
       <OriginStorySection />
       <AboutMeSection onOpenSayHi={() => setIsSayHiOpen(true)} />

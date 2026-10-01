@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-cream: #EDE6D8;
+    --bubble-pink: #F28DB9;
+    --warm-grey: #8A8580;
+    --charcoal: #262320;
+  }
+
+  body {
+    background-color: #EDE6D8;
+    color: #262320;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+.font-bubble {
+  font-family: 'Modak', 'Rubik Bubbles', 'Chewy', cursive;
+}
+
+.font-bubble-alt {
+  font-family: 'Rubik Bubbles', 'Modak', cursive;
+}
+
+.font-condensed {
+  font-family: 'Archivo Black', sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.font-hand {
+  font-family: 'Caveat', cursive;
+}
+
+.font-hand-scribble {
+  font-family: 'Reenie Beanie', cursive;
+}
+
+.font-body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Chunky bubblegum text treatment */
+.bubble-title-shadow {
+  text-shadow:
+    0 4px 0 rgba(214, 102, 152, 0.35),
+    0 12px 28px rgba(38, 35, 32, 0.12);
+}
+
+/* Subtle masking tape strip effect */
+.scrapbook-tape {
+  background: rgba(255, 252, 240, 0.62);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-left: 1px dashed rgba(138, 133, 128, 0.25);
+  border-right: 1px dashed rgba(138, 133, 128, 0.25);
+}
+
+/* Halftone & cutout blend helper so cream background of placeholder blends seamlessly */
+.cutout-halftone-img {
+  filter: contrast(1.08) grayscale(100%);
+  mix-blend-mode: multiply;
+}
+

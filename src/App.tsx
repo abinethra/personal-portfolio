@@ -4,8 +4,12 @@
  */
 
 import { useState } from 'react';
+import { AboutMeSection } from './components/AboutMeSection';
 import { HeroSection } from './components/HeroSection';
+import { OriginStorySection } from './components/OriginStorySection';
+import { ProjectsSection } from './components/ProjectsSection';
 import { SayHiModal } from './components/SayHiModal';
+import { SkillsStackSection } from './components/SkillsStackSection';
 
 export default function App() {
   const [isSayHiOpen, setIsSayHiOpen] = useState(false);
@@ -13,6 +17,10 @@ export default function App() {
   return (
     <main className="min-h-screen w-full bg-[#EDE6D8] text-[#262320] relative overflow-x-hidden">
       <HeroSection onOpenSayHi={() => setIsSayHiOpen(true)} />
+      <OriginStorySection />
+      <AboutMeSection onOpenSayHi={() => setIsSayHiOpen(true)} />
+      <SkillsStackSection />
+      <ProjectsSection />
       <SayHiModal isOpen={isSayHiOpen} onClose={() => setIsSayHiOpen(false)} />
     </main>
   );

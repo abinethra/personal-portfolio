@@ -147,3 +147,67 @@ export const DoodleStar: React.FC<{ className?: string; color?: string }> = ({
     />
   </svg>
 );
+
+/**
+ * Dotted hand-drawn squiggle path with loop and arrow connecting "day 1 coder" and "now" passport frames
+ */
+export const PassportSquiggleArrow: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <svg
+    viewBox="0 0 260 130"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    aria-hidden="true"
+  >
+    <path
+      d="M10 42C52 10 108 18 118 58C126 88 86 98 92 66C98 34 166 28 202 68C222 90 236 94 246 92"
+      stroke="#3A3633"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeDasharray="5 7"
+    />
+    <path
+      d="M232 78C239 84 246 89 251 92C244 96 236 102 229 108"
+      stroke="#F28DB9"
+      strokeWidth="2.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M230 80L248 92L231 105"
+      stroke="#3A3633"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+/**
+ * Hand-drawn curved arrow for the About Me slide annotations
+ */
+export const AboutDoodleArrow: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <svg
+    viewBox="0 0 120 70"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    aria-hidden="true"
+  >
+    <path
+      d="M104 12C76 6 38 20 18 54"
+      stroke="#F28DB9"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeDasharray="4 6"
+    />
+    <path
+      d="M14 39L16 57L33 50"
+      stroke="#F28DB9"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
